@@ -1,4 +1,4 @@
-classdef gaussian < handle
+classdef Gaussian < handle
     %GAUSSIAN Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -11,7 +11,7 @@ classdef gaussian < handle
     
     methods
         % constructor
-        function obj = gaussian(mu, sigma)
+        function obj = Gaussian(mu, sigma)
             if nargin > 0 obj.mu = mu;          end
             if nargin > 1 obj.sigma = sigma;    end
         end

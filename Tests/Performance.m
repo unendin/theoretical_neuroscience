@@ -1,4 +1,4 @@
-classdef performance < handle
+classdef Performance < handle
     %PERFORMANCE Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -13,7 +13,7 @@ classdef performance < handle
     
     methods
         % constructor
-        function obj = performance(class, method)
+        function obj = Performance(class, method)
             if nargin > 0 obj.class = str2func(class);    end
             if nargin > 1 obj.method = method;         end
         end
