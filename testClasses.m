@@ -19,10 +19,15 @@ end
 %% Generate simple poisson spike train
 clear;
 
-% instantiate neuron with rate
+% Instantiate neuron with rate (in Hz)
 neuron = Neuron(1);
+
 % verify rate
 neuron.rate
 
-% instantiate spike train
+% instantiate spike train with neuron and default tspan & dt inherited
+% from its superclass TimeSeries
 spikeTrain = SpikeTrain(neuron); 
+
+% plot using 
+spikeTrain.makePlot();
