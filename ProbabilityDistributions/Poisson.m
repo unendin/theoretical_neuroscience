@@ -19,7 +19,7 @@ classdef Poisson < handle
             if nargin > 1 p.k = k;              end
         end
 
-        function computePmf(p)
+        function computePdf(p)
             p.K = 0:1:10;
             p.pmf = poisspdf(p.K,p.lambda);
             disp(p.pmf);
@@ -27,7 +27,7 @@ classdef Poisson < handle
         end
         
         % computePmf_didactic spells out formula
-        function computePmf_didactic(p)
+        function computePdf_didactic(p)
             p.K = 0:1:10;
             p.pmf = p.lambda .^ p.K .*  p.e .^ -p.lambda ./ factorial(p.K);
             disp(p.pmf);           
