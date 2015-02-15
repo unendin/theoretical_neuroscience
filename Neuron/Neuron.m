@@ -3,14 +3,14 @@ classdef Neuron < handle
     %   Detailed explanation goes here
     
     properties
-        rate = 10;     % firing rate (in Hz - cycles per second)
+        firingRate = 10;     % firing rate (in Hz - cycles per second)
     end
     
     methods
         % constructor
-        function n = Neuron(rate)
+        function obj = Neuron(firingRate)
             if nargin > 0 
-                n.rate = rate;
+                obj.firingRate = firingRate;
             end
         end        
     end

@@ -9,7 +9,7 @@ classdef Poisson < handle
         K;              % vector of k's
         mu;
         var;            % Poisson => mu = var
-        pmf;
+        pdf;
         plot;
     end
     
@@ -21,9 +21,7 @@ classdef Poisson < handle
 
         function computePdf(p)
             p.K = 0:1:10;
-            p.pmf = poisspdf(p.K,p.lambda);
-            disp(p.pmf);
-            
+            p.pdf = poisspdf(p.K,p.lambda);            
         end
         
         % computePmf_didactic spells out formula

@@ -3,10 +3,10 @@ classdef Gaussian < handle
     %   Detailed explanation goes here
     
     properties
-        mu      % mean
-        sigma   % standard deviation
-        dim     % matrix dimensions for rand number generation
-        rand    % randomly generated numbers
+        mu = 0;     % mean
+        sigma = 1   % standard deviation
+        dim         % matrix dimensions for rand number generation
+        rand        % randomly generated numbers
     end 
     
     methods
