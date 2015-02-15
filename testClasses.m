@@ -6,6 +6,13 @@ simulation = Spikes_Poisson(params);
 simulation.makePlot;
 simulation.computeSummary;
 
+%% Generate leaky integrate and fire (LIF) spike train simulation
+clear;
+% default param object
+params = Parameters;
+simulation = Spikes_LIF(params);
+simulation.makePlot;
+simulation.computeSummary;
 
 %% Plot poisson pdf
 clear;
