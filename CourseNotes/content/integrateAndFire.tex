@@ -1,0 +1,243 @@
+\documentclass[../doc.tex]{subfiles}
+\begin{document}
+
+\section{Integrate and Fire Model}
+
+\begin{equation}
+CV = Q 
+\end{equation}
+
+\begin{equation}\label{eq:current}
+C \frac{dV}{dt} = I 
+\end{equation}
+
+Recall Ohm's Law:
+
+\begin{equation}
+IR = V \Rightarrow I = \frac{V}{R} 
+\end{equation}
+
+At rest, the neuron is actually subject to discharge, hence the minus sign:
+
+\begin{equation}
+I = \frac{-V}{R} 
+\end{equation}
+
+But this is offset by the ATP pump:
+
+\begin{equation}
+I = I_{pump} - \frac{V}{R} 
+\end{equation}
+
+Where $I_{pump}$ is the polarizing current at rest: $\frac{V_{rest}}{R}$. So:
+
+\begin{equation}
+I = I_{pump} - \frac{V}{R} = \frac{V_{rest}}{R} - \frac{V}{R} = \frac{1}{R} (V_{rest} - V)
+\end{equation} 
+
+Now let's add an external current, $I_ext$:
+
+\begin{equation}
+I = frac{1}{R} (V_{rest} - V) + I_ext
+\end{equation} 
+
+From ~\ref{eq:current}:
+
+\begin{equation}
+C \frac{dV}{dt} = I = frac{1}{R} (V_{rest} - V) + I_ext
+\end{equation} 
+
+Multiply both sides by $R$:
+
+\begin{equation}\label{eq:RC}
+RC \frac{dV}{dt} = V_{rest} - V + RI_ext
+\end{equation} 
+
+Define the membrane time constant $\tau$:
+
+\begin{equation}
+RC \equiv \tau
+\end{equation} 
+
+Plug $\tau$ into equation ~\ref{eq:RC}:
+
+\begin{equation}\label{eq:tau}
+\tau \frac{dV}{dt} = V_{rest} - V + RI_{ext}
+\end{equation} 
+
+In any given instant? $V_{rest}$ and $RI_{ext}$ are constants. IS THIS A DEFINITION:
+
+\begin{equation}\label{eq:infty}
+V_{\infty} = V_{rest} + RI_{ext}
+\end{equation} 
+
+So, substituting ~\ref{eq:infty} into ~\ref{eq:tau}:
+
+\begin{equation}
+\tau \frac{dV}{dt} = V_{\infty} - V
+\end{equation} 
+
+Note, the minus on the V is convenient for solving ODE.
+
+Dividing both side by $\tau$:
+
+\begin{equation}
+\frac{dV}{dt} = \frac{V_{\infty} - V}{\tau}
+\end{equation} 
+
+\subsubsection{SOLVE ODE}
+
+Separate the variables ($V$ and $t$), multiplying both sides by $dt$ and dividing both by $V_{\infty} - V$:
+
+\begin{equation}
+\frac{1}{V_{\infty} - V} dV =  \frac{1}{\tau} dt
+\end{equation}
+
+Define:
+
+\begin{equation}
+z \equiv V_{\infty} - V
+\end{equation}
+
+So WHERE DOES MINUS SIGN COME FROM:
+
+\begin{equation}
+\frac{1}{z} dz =  - \frac{1}{\tau} dt
+\end{equation}
+
+Then integrate both sides:
+
+\begin{equation}
+\int_{z(0)}{z(t)} \frac{1}{z} dz =   \int_ \frac{1}{\tau} dt
+\end{equation}
+
+Take anti-derivatives:
+
+\begin{equation}
+\ln z(t) - \ln z(0)  =  - \frac{t}{\tau}
+\end{equation}
+
+\begin{equation}
+\ln z(t) - \ln z(0)  =  - \frac{t}{\tau}
+\end{equation}
+
+Difference of the logs is the log of the quotient:
+
+\begin{equation}
+\ln ( \frac{z(t)}{z(0)} )  =  - \frac{t}{\tau}
+\end{equation}
+
+Take the exponent of both sides:
+
+\begin{equation}
+\frac{z(t)}{z(0)} =  e^{\frac{t}{\tau}}
+\end{equation}
+
+\begin{equation}
+z(t) = z(0) e^{\frac{t}{\tau}}
+\end{equation}
+
+The originals for $z$ are:
+
+\begin{equation}
+z(t) = V_{\infty} - V(t)
+\end{equation}
+
+\begin{equation}
+z(t) = V_{\infty} - V(0)
+\end{equation}
+
+Restoring these in the equation gives us:
+
+\begin{equation}
+V_{\infty} - V(t) = ( V_{\infty} - V(0) ) e^{\frac{t}{\tau}}
+\end{equation}
+
+Subtract $V_{\infty}$ from both sides: 
+
+\begin{equation}
+- V(t) = - V_{\infty} + ( V_{\infty} - V(0) ) e^{\frac{t}{\tau}}
+\end{equation}
+
+Reverse the sign on both sides:
+
+\begin{equation}
+V(t) =  V_{\infty} + ( V(0) - V_{\infty} ) e^{\frac{t}{\tau}}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+Modeling the evolution of voltage over time.
+
+Let us inject a current $I(t)$ into a RC circuit with a battery of voltage $V_{rest}$. The total current can be divided into a resistor component and a capacitor component (Why?):
+
+\begin{equation}
+I(t) = I_C (t) + I_R (t) 
+\end{equation}
+
+Recall that $C = \frac{Q}{V} \rightarrow Q = VC$ and $I = \frac{d}{dt} Q$ (charge per unit of time) so:
+
+\begin{equation}
+I_C =  \frac{d}{dt} VC = \frac{dV}{dt} C
+\end{equation}
+
+Recall that $V = IR$ or, for this case, $V_R = I_R R$. Given the battery, with voltage $V_{rest}$, the total voltage in the circuit $V = V_{rest} + V_R$, so $V_R = V - V_{rest}$ and:
+
+\begin{equation}
+I_R  =  \frac{1}{R} (V - V_{rest})
+\end{equation}
+
+Summing the last two equations:
+
+\begin{equation}
+I(t) = I_C (t) + I_R (t) = \frac{1}{R} (V - V_{rest}) +  \frac{dV}{dt} C
+\end{equation}
+
+Multiply both sides by R:
+
+\begin{equation}
+R I(t) =  (V - V_{rest}) + \frac{dV}{dt} RC
+\end{equation}
+
+Isolate last term:
+
+\begin{equation}
+\frac{dV}{dt} RC =  - (V - V_{rest}) + R I(t)
+\end{equation}
+
+\subsection{Linear Differential Equation}
+
+Let's look at the units. The right hand side is in units of volts (recall that $V = IR$). The left hand side has one component $\frac{dV}{dt}$ with volts divided by units of time, so the other component must be a unit of time. We'll call this "time constant" $\tau$: $RC = \tau$, so substituting $\tau$ for $RC$:
+
+\begin{equation}
+\tau \frac{dV}{dt} =  \tau \frac{d}{dt} V = - (V - V_{rest}) + R I(t)
+\end{equation}
+
+Note, if we set a $V_1 = V - V_{rest}$ then $\frac{d}{dT}(V - V_{rest}) = \frac{d}{dT}V - \frac{d}{dT} V_{rest}) = \frac{d}{dT}V$ ($V_{rest}$ is a constant). And we cna say:
+
+\begin{equation}
+\tau \frac{dV_1}{dt} = - V_1 + R I(t)
+\end{equation}  
+
+Consider the solution for $I = 0$:
+
+\begin{equation}
+\tau \frac{dV_1}{dt} = - V_1
+\end{equation}  
+
+So:
+
+\begin{equation}
+V = e^{\frac{-t}{\tau}} \text{ that is, exponential decay over time, back to $V_{rest}$}
+\end{equation}  
+
+\end{document}

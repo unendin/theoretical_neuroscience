@@ -1,0 +1,19 @@
+
+%% BEGIN
+clear;
+echo on;
+a = struct('neuron', ...
+            struct('firingRate',10), ...
+           'timeSeries', ...
+            struct('tspan', 10, ...
+                   'dt', .001),...
+            'output', ...
+                   'PoisonProcess');
+
+if a.
+echo off; 
+%% END
+
+
+
+% power(lambda, k) .* power(e, lambda) ./ factorial(k)

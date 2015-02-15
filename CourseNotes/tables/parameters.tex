@@ -1,0 +1,124 @@
+\documentclass[../doc.tex]{subfiles}
+\begin{document}
+
+\begin{table}[htbp]
+    \scriptsize
+    \caption{Parameters in neuron model}
+    \tablebegin
+    {
+        >{\raggedright}p{80pt}
+        >{\raggedright}p{40pt}
+        >{\raggedright}p{60pt}
+        >{\raggedright}p{60pt}
+        >{\raggedright}p{60pt}
+        >{\raggedright\arraybackslash}p{110pt}
+    }
+    \toprule
+
+    % HEADERS
+      Name      
+    & Symbol (Alt)
+    & Formula            
+    & Units
+    & Value                
+    & Definition             
+    \\
+    
+    \midrule 
+    \\
+
+      Capacitance
+    & 
+    & 
+    & farad, F
+    & .1-1nF 
+    & How much charge can be stored on a particular capacitor for a given potential difference across it: $C = \frac{V}{q}$
+    \\
+
+      Charge
+    & $Q$
+    & $Q = CV$
+    & coulomb
+    &
+    &
+    \\
+
+      Current
+    & $I$
+    & $I = C \frac{dV}{dt} = \frac{V}{R}$
+    & amps, A
+    &
+    & Flow of charge per time unit (Amount of positive charge flowing per unit of time past a point in a conductor)
+    \\
+
+      Current density
+    & $I$
+    &
+    & $\mu A cm^2$
+    &
+    & Flow of charge per time unit (Amount of positive charge flowing per unit of time past a point in a conductor)
+    \\
+
+
+      Force
+    & $F$
+    & 
+    & newton
+    &
+    &
+    \\
+
+      Resistance
+    & $R$
+    &
+    & ohm, $\Omega$
+    &
+    &
+    \\
+
+      Voltage
+    & $V$, $E$ ?
+    & $u$
+    & volts, V (joules per coulomb)
+    &
+    & Membrane (electric) potential. Work (joules) per charge (coulombs)
+    \\
+
+      Reset voltage
+    & $V_{reset}$
+    &
+    & volts
+    &
+    & Reset potential
+    \\
+
+      Rest voltage
+    & $V_{rest}$, $E$
+    &
+    & volts
+    & -70mV
+    & Reset potential
+    \\
+
+      Threshold voltage
+    & $V_{thresh}$
+    &
+    & volts (joules per coulumb)
+    & -55 - -50mV
+    & Threshold voltage, threshold potential
+    \\
+
+      Work
+    & $W$
+    & 
+    & joules (like all energy)
+    &
+    & 
+    \\
+
+    \bottomrule
+
+\end{tabular}
+\end{table}
+
+\end{document}
