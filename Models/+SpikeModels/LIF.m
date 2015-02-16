@@ -1,20 +1,17 @@
-classdef Spikes_LIF < Spikes
+classdef LIF < SpikeModels.SpikeModelBase
     % PoissonProcess
     %   Detailed explanation goes here
     
     properties
-        numSpikes;
-        mu_isi;         % mean inter-spike interval 
-        var_isi;
-        plot;
+
     end
     
     methods
         % Constructor
-        function obj = Spikes_LIF(params)
+        function obj = LIF(params)
             
             % Call superclass constructor
-            obj = obj@Spikes(params);
+            obj = obj@SpikeModels.SpikeModelBase(params);
             
             % Generate vector of current input
             input = Input(params);
@@ -40,22 +37,33 @@ classdef Spikes_LIF < Spikes
                     obj.timeSeries.T(3,t+1) = params.V_reset; %reset the voltage to V_reset
                 end
             end
-        end
+        end    
         
-        function makePlot(obj)
-            % Plot times against spike points
-            obj.plot = Plot(obj.timeSeries.T(1,:), obj.timeSeries.T(4,:));
-        end
-
-        function computeSummary(obj)
-                        
-            % Row of spike indicators * col of 1s
-            obj.numSpikes = obj.timeSeries.T(4,:) * ones(obj.timeSeries.n,1);
+        %% computeNoise
+        function computeNoise(obj)
             
-            % timespan divide ny n_spiikes
-            obj.mu_isi = obj.timeSeries.tSpan / obj.numSpikes; 
+            random('norm',0,params.I_sigma, [1,obj.timeSeries.n]
             
         end        
+        
+        %% computeSpikes
+        function computeSpikes(obj)
+            
+            % Check if the neuron crossed threshold
+            if obj.timeSeries.T(3,t+1) > params.V_thresh     
+                % Neuron fired!
+                % Save spike time
+                obj.timeSeries.T(4,t+1) = 1;
+                
+                % Reset voltage to V_reset
+                obj.timeSeries.T(3,t+1) = params.V_reset;
+            end
+        end 
+        
+        %% computeVoltage
+        function computeVoltage(obj)
+
+        end  
     end   
 end
 
