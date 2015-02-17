@@ -1,0 +1,4 @@
+CourseNotes/*.aux
+CourseNotes/*.log
+CourseNotes/*.gz
+CourseNotes/*latexmk

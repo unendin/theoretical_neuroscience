@@ -3,17 +3,62 @@
 
 \subsection{Poisson}
 
-\subsubsection{Homogeneous Poisson Process} 
+Parameter, $\lambda$, referred to as the "intensity" or "arrival rate." When rate is constant, referred to as homogeneous poisson process.
 
-Definition: Constant rate (lambda)
+\paragraph{Derivation from Bernoulli}
 
 \paragraph{PDF}
 \[
-P(X = k) = \frac{\lambda^{-k} e^{-\lambda}}{k!}
+P(y | \lambda) = \frac{\lambda^{-y} e^{-\lambda}}{y!}
 \]
 
+\paragraph{First Moment}
+
 \[
-\lambda = E(X) = Var(X)
+\frac{\lambda^{-y} e^{-\lambda}}{y!} \frac{dy}{d\lambda} = \frac{1}{y!}( y \lambda^{y-1}e^{-\lambda} - \lambda^{y} e^{-\lambda} )
 \]
+
+Set equal to 0 (and elminate constant $\frac{1}{y!}$):
+
+\[
+y \lambda^{y-1}e^{-\lambda} = y \lambda^{y}e^{-\lambda}
+\]
+
+Divide both sides by $e^{-\lambda}$:
+
+\[
+y \lambda^{y-1} = \lambda^{y}
+\]
+
+Divide both sides by $\lambda^{y-1}$:
+
+\[
+y = \lambda
+\]
+
+So:
+
+\[
+E(y) = <y> = \lambda
+\]
+
+\paragraph{Second Moment}
+
+Same holds for second moment:
+
+\[
+Var(y) = < (y - <y>)^2 > = \lambda
+\]
+
+\paragraph{Fano Factor}
+
+The Fano Factor of a distribution is defined as the ratio of the variance to the mean. For a poisson random variable:
+
+\[
+\text{Fano factor } = frac{Var(y)}{E(y)} =  \frac{\lambda}{\lambda} = 1
+\]
+
+Fano factors in neural recordings range from $.3 - 1.8$ [REF?]
+
 
 \end{document}
