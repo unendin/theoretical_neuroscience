@@ -38,4 +38,3 @@ classdef Poisson < handle
     end
     
 end
-

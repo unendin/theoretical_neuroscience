@@ -22,6 +22,7 @@ import SpikeModels.*
 params = Parameters;
 simulation = PoissonProcess(params);
 simulation.computeSummary(params);
+simulation.computeMll(params);
 fig = Figure(simulation, params);
 
 %% Generate leaky integrate and fire (LIF) spike train simulation

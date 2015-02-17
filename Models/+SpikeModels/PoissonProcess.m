@@ -2,6 +2,13 @@ classdef PoissonProcess < SpikeModels.SpikeModelBase
     % SpikeModel_Poisson
     
     properties
+                theta;
+            fval;
+            exitflag;
+            output;
+            grad;
+            hessian;
+        
     end
     
     methods
@@ -20,6 +27,22 @@ classdef PoissonProcess < SpikeModels.SpikeModelBase
             obj.computeSpikes;            
         end
 
+        %% computeLikelihood
+        function computeMll(obj, params)
+            theta0 = 1 * params.dt;
+            
+            [theta,fval,exitflag,output,grad,hessian] = ...
+                fminunc(@(x) poissonMll(x,obj.timeSeries.T(4,:)),theta0);
+            
+            obj.theta = theta / params.dt;
+            obj.fval  = fval;
+            obj.exitflag = exitflag;
+            obj.output = output;
+            obj.grad = grad;
+            obj.hessian = hessian;
+                        
+        end           
+        
         %% computeNoise
         function computeNoise(obj)
             

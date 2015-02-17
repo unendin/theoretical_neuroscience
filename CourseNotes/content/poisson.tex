@@ -5,14 +5,14 @@
 
 Parameter, $\lambda$, referred to as the "intensity" or "arrival rate." When rate is constant, referred to as homogeneous poisson process.
 
-\paragraph{Derivation from Bernoulli}
+\subsubsection{Derivation from Bernoulli}
 
-\paragraph{PDF}
+\subsubsection{PDF}
 \[
 P(y | \lambda) = \frac{\lambda^{-y} e^{-\lambda}}{y!}
 \]
 
-\paragraph{First Moment}
+\subsubsection{First Moment / Mean}
 
 \[
 \frac{\lambda^{-y} e^{-\lambda}}{y!} \frac{dy}{d\lambda} = \frac{1}{y!}( y \lambda^{y-1}e^{-\lambda} - \lambda^{y} e^{-\lambda} )
@@ -21,7 +21,7 @@ P(y | \lambda) = \frac{\lambda^{-y} e^{-\lambda}}{y!}
 Set equal to 0 (and elminate constant $\frac{1}{y!}$):
 
 \[
-y \lambda^{y-1}e^{-\lambda} = y \lambda^{y}e^{-\lambda}
+y \lambda^{y-1}e^{-\lambda} = \lambda^{y}e^{-\lambda}
 \]
 
 Divide both sides by $e^{-\lambda}$:
@@ -42,7 +42,7 @@ So:
 E(y) = <y> = \lambda
 \]
 
-\paragraph{Second Moment}
+\subsubsection{Second Moment / Variance}
 
 Same holds for second moment:
 
@@ -50,7 +50,7 @@ Same holds for second moment:
 Var(y) = < (y - <y>)^2 > = \lambda
 \]
 
-\paragraph{Fano Factor}
+\subsubsection{Fano Factor}
 
 The Fano Factor of a distribution is defined as the ratio of the variance to the mean. For a poisson random variable:
 
@@ -60,5 +60,46 @@ The Fano Factor of a distribution is defined as the ratio of the variance to the
 
 Fano factors in neural recordings range from $.3 - 1.8$ [REF?]
 
+
+\subsubsection{Point Processes}
+
+For a discrete fractional period $\delta t$:
+
+\[
+P_y = p_y \delta t
+\]
+
+\[
+E(y) = Var(y) = \lambda \delta t
+\]
+
+Or, from a programming perspective:
+
+\begin{enumerate}
+	\item generate a vector of time bins
+	\item populate each bin with random number 0-1 from uniform distribution
+	\item event occurs in bin if number $< \lambda \delta t$  
+\end{enumerate}}
+
+\subsubsection{Maximum Likelihood Estimation for Poisson}
+
+
+\[
+P(x|\lambda) =  
+\]
+
+\[
+\sum ln \frac{e^{-\lambda} \lambda^{x_i}}{y!_i}
+\]
+
+$\frac{1}{y!_i}$ is a constant, so let's remove it from maximization:
+
+\[
+\sum ln e^{-\lambda} \lambda^{x_i}
+\]
+
+\[
+\sum -\lambda + ln \lambda^{x_i}
+\]
 
 \end{document}
